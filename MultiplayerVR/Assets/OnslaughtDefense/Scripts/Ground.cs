@@ -11,14 +11,14 @@ public class Ground : MonoBehaviour
     public Transform location;
     public GameObject player;
 
-    private GameObject turret;
+    public GameObject turret;
 
     //private Renderer rend;
     private Color startColor;
 
     //public ActionBasedController controller;
     public InputActionReference placementAction;
-    private UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor rayInteractor;
+    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor rayInteractor;
 
     BuildManager buildManager;
 
@@ -28,8 +28,10 @@ public class Ground : MonoBehaviour
     {
         //rend = GetComponent<Renderer>();
         //startColor = rend.material.color;
-        rayInteractor = FindObjectOfType<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>();
 
+        rayInteractor = FindObjectOfType<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>();
+        Debug.DrawRay(rayInteractor.transform.position, rayInteractor.transform.forward * 10f, Color.red, 2f);
+       
         buildManager = BuildManager.instance;
 
         /*if (rayInteractor != null)
@@ -42,20 +44,18 @@ public class Ground : MonoBehaviour
         {
             Debug.Log("button pressed 1");
             placementAction.action.Enable();
-            placementAction.action.performed += OnButtonDown;
+            placementAction.action.performed += ctx => OnButtonDown();
             Debug.Log("button pressed 2");
         }
 
         
     }
 
-    void OnButtonDown(InputAction.CallbackContext context)
+    void OnButtonDown()
     {
-        
-
-        /*if (buildManager.GetTurretToBuild() == null)
+        /*if (buildManager.GetTurretToBuild() == null || turret != null)
         {
-            Debug.Log("No build manager found");
+            Debug.Log("No turret selected");
             return;
         }*/
 

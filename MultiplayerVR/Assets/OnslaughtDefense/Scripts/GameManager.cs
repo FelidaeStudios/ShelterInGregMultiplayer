@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private bool gameEnded = false;
+    /*private bool gameEnded = false;
 
     void Update()
     {
@@ -23,5 +23,5 @@ public class GameManager : MonoBehaviour
         //add scene reloading
         Debug.Log("Game over");
         gameEnded = true;
-    }
+    }*/
 }
